@@ -8,17 +8,28 @@ public class Snakes : Traps {
 	public bool PoisnedPlayer = false;
 	public bool isPlayerInRange = false;
 	public bool antedoteSpawnd = false;
+	Vector3 iniitalPostion; 
+	Vector3 pA, pB;
+	public float snakeSpeed = 2 ;
+	public GameObject snakeNestPrefab;
+	public GameObject antedotePrefab;//find object within floor items and span it there if player is bitten
 	//get player refrence 
 	//add  potion object 
 	// Use this for initialization
 	void Start () {
 		//base.spawnObject ();
-
+		iniitalPostion = gameObject.GetComponent<Transform>().position;
+		Instantiate (snakeNestPrefab, iniitalPostion, Quaternion.identity);
+		pA = iniitalPostion;
+		pB = iniitalPostion;
+		pA.x = iniitalPostion.x + 1;//this is done with x but can change it ot y 
+		pB.x = iniitalPostion.x - 1; // need to add edge case to stop it from going itnp walls 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		MovefromAtoB ();
 	}
 
 	//compare ditance to player - if close poison player 
@@ -27,6 +38,8 @@ public class Snakes : Traps {
 
 	//snakes patrol 
 	public void MovefromAtoB(){
+		transform.position = Vector3.Lerp (pA, pB, Mathf.PingPong(Time.time*snakeSpeed, 1.0f));
+
 	}
 
 	//spawnAntedote and poison player

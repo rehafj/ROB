@@ -8,32 +8,53 @@ public class Spikes : Traps {
 	public float countdown = 6; // timer till spikes go up or down - have this in update 
 	[SerializeField]
 	bool isSpikep;
+	Color baseColor;
+	Color clr;
+	SpriteRenderer rnd;
 	// Use this for initialization
 	void Start () {
-		//base.spawnObject ();
-		//Debug.Log("spikenoot noot");
-
+		
+		rnd = gameObject.GetComponent<SpriteRenderer> ();
+		baseColor = rnd.color;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (timer >=0) {
 			timer -= Time.deltaTime;
-			if (timer < 6 && timer >= 3 ) {
+			if (timer < countdown && timer >= (countdown/2)  ) {
 				Debug.Log ("timer true ( spikes up ");
 				isSpikep = true;
-			}if (timer < 3) {
-				isSpikep = false;
+				rnd.color = Color.grey;
 
-				Debug.Log ("timer Done - resetting - spikes is false ");
+			}if (timer < (countdown/2)) {
+				isSpikep = false;
+				rnd.color = baseColor;
+				Debug.Log ("spikes is false ");
 
 			}
 
 		} 
 		else {
 			timer = countdown;
-			Debug.Log ("timer Done - resetting - spikes is false ");
-			isSpikep = false;
+			Debug.Log ("timer Done - resetting" );
+
+		}
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.tag == "Player") {
+			if (isSpikep == true) {
+				Debug.Log ("player is dead");
+			}
+		}
+	}
+	//if the player lags on it this is called each frame 
+	void OnTriggerStay(Collider other){
+		
+		if (other.tag == "Player") {
+			if (isSpikep == true) {
+			Debug.Log ("player is dead");	}
 		}
 	}
 }

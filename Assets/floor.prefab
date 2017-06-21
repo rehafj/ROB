@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212623629049094330}
   - component: {fileID: 95037112857455412}
   - component: {fileID: 82475293865617804}
-  - component: {fileID: 135502735204361586}
+  - component: {fileID: 65408707857735100}
   m_Layer: 0
   m_Name: floor
   m_TagString: Untagged
@@ -43,6 +43,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65408707857735100
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1851748652125042}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82475293865617804
 AudioSource:
   m_ObjectHideFlags: 1
@@ -140,18 +152,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!135 &135502735204361586
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1851748652125042}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.31
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212623629049094330
 SpriteRenderer:
   m_ObjectHideFlags: 1

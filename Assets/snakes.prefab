@@ -158,6 +158,10 @@ MonoBehaviour:
   PoisnedPlayer: 0
   isPlayerInRange: 0
   antedoteSpawnd: 0
+  snakeSpeed: 2
+  snakeNestPrefab: {fileID: 1335428020097870, guid: 91dfaff9ead6b4e9b8a37edf4deff0fc,
+    type: 2}
+  antedotePrefab: {fileID: 0}
 --- !u!135 &135181953009888664
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -168,7 +172,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.31
+  m_Radius: 0.15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212884137015321252
 SpriteRenderer:
@@ -201,7 +205,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
