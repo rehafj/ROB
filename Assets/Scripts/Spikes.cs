@@ -23,21 +23,18 @@ public class Spikes : Traps {
 		if (timer >=0) {
 			timer -= Time.deltaTime;
 			if (timer < countdown && timer >= (countdown/2)  ) {
-				Debug.Log ("timer true ( spikes up ");
 				isSpikep = true;
 				rnd.color = Color.grey;
 
 			}if (timer < (countdown/2)) {
 				isSpikep = false;
 				rnd.color = baseColor;
-				Debug.Log ("spikes is false ");
 
 			}
 
 		} 
 		else {
 			timer = countdown;
-			Debug.Log ("timer Done - resetting" );
 
 		}
 	}
@@ -54,7 +51,13 @@ public class Spikes : Traps {
 		
 		if (other.tag == "Player") {
 			if (isSpikep == true) {
+			Destroy (other);
 			Debug.Log ("player is dead");	}
 		}
 	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		Debug.Log ("player is dead");
+	}
+
 }

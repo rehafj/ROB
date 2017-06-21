@@ -61,7 +61,7 @@ public class TrapManager : MonoBehaviour {
 		for (int i = 0; i <= x; i++) {
 			for (int j = 0; j <= y; j++) {
 				//only spawn this if ground is clear 
-				Vector3 tmp = new Vector3((i), (j), 0);
+				Vector3 tmp = new Vector3((i), 0 , (j));
 					postionsNew.Add (tmp);
 
 			}
@@ -79,7 +79,7 @@ public class TrapManager : MonoBehaviour {
 				int rndx = Random.Range (0, x - 1);
 				int rndy = Random.Range (0, y - 1);
 
-				Vector3 tmp = new Vector3 ((rndx), (rndy), 0);
+				Vector3 tmp = new Vector3 ((rndx), 0, (rndy));
 				cntr++;
 				if (tmp != v) {
 					trapPostions.Add (tmp);
@@ -112,7 +112,7 @@ public class TrapManager : MonoBehaviour {
 			spawnTrapAtPostion (v);
 		}
 		foreach (Vector3 v in postionsNew) {
-			Instantiate (prefabTraps [4],v, Quaternion.identity);
+			Instantiate (prefabTraps [4],v,prefabTraps[4].transform.rotation);
 
 		}
 	}
@@ -126,7 +126,7 @@ public class TrapManager : MonoBehaviour {
 			int xPos = Random.Range (0, 51); 
 			int yPos = Random.Range (0, 51); 
 
-			Vector3 tmpPostion = new Vector3 (xPos, yPos, 0);
+			Vector3 tmpPostion = new Vector3 (xPos, 0, yPos);
 			//postions.Add (tmpPostion);
 			bool tmpcheck = checkArea (xPos, yPos, minxyDistance);
 			Debug.Log (checkArea (xPos, yPos, minxyDistance));
@@ -181,11 +181,12 @@ public class TrapManager : MonoBehaviour {
 		int xPos = Random.Range (0, 50); 
 		int yPos = Random.Range (0, 50); 
 
-		return new Vector3 (xPos, yPos, 0);
+		return new Vector3 (xPos, 0,  yPos);
 
 	}
 
 //spawn random traps 
+	//depricated 
 	void spawnTrapRandom(Vector3 tmpPostion){
 	
 //		if(!IsCloseToTrap ){
@@ -221,17 +222,17 @@ public class TrapManager : MonoBehaviour {
 
 
 	void spawnTrapAtPostion(Vector3 pos){
-	
+
 
 			int tmp = Random.Range (0, 101);
 
 			if (tmp >= 75) {
-			Instantiate (prefabTraps [0], pos, Quaternion.identity);
+			Instantiate (prefabTraps [0], pos, prefabTraps[0].transform.rotation);
 				butn++;
 				//spawn button - prefab 1 
 			}
 			if (tmp < 75 && tmp >= 50) {
-			Instantiate (prefabTraps [1], pos, Quaternion.identity);
+			Instantiate (prefabTraps [1], pos, prefabTraps[1].transform.rotation);
 				pits++;
 				//spawn pits  - prefab 2 
 
@@ -239,13 +240,13 @@ public class TrapManager : MonoBehaviour {
 
 			if (tmp < 50 && tmp >= 20) {
 				//spawn spikes  - prefab 3
-			Instantiate (prefabTraps [2],pos, Quaternion.identity);
+			Instantiate (prefabTraps [2],pos, prefabTraps[2].transform.rotation);
 				spiks++;
 
 			}
 
 			if (tmp < 20) {
-			Instantiate (prefabTraps [3],pos, Quaternion.identity);
+			Instantiate (prefabTraps [3],pos, prefabTraps[3].transform.rotation);
 				snakes++;
 				//spawn prefab four - snakes 
 
