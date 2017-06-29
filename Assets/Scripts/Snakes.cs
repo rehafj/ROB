@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Snakes : Traps {
 	//trap manager randomly spawn types of traps 
+	Player plr;
+	public float rad;
+	public LayerMask lyr;
 	public bool PoisnedPlayer = false;
 	public bool isPlayerInRange = false;
 	public bool antedoteSpawnd = false;
@@ -18,11 +21,15 @@ public class Snakes : Traps {
 	public float snakeSpeed = 2 ;
 	public GameObject snakeNestPrefab;
 	public GameObject antedotePrefab;//find object within floor items and span it there if player is bitten
+	public GameObject projectilePrefab;
+	public  float bulletSpeed;
 	//get player refrence 
 	//add  potion object 
 	// Use this for initialization
 	void Start () {
 		//base.spawnObject ();
+		//rad = 3;
+		plr = FindObjectOfType<Player>();
 		iniitalPostion = gameObject.GetComponent<Transform>().position;
 		Instantiate (snakeNestPrefab, iniitalPostion, Quaternion.identity);
 		x = Random.Range (0, 11);
@@ -55,6 +62,7 @@ public class Snakes : Traps {
 	void Update () {
 
 		MovefromAtoB ();
+		poisonPlayer ();
 	}
 
 	//compare ditance to player - if close poison player 
@@ -70,9 +78,34 @@ public class Snakes : Traps {
 	}
 
 	//spawnAntedote and poison player
-	void spawnAntedoe(){
+	void poisonPlayer(){
+		if (!isPlayerInRange) {
+			//change this into an enum to control movment after
+			if (Physics.CheckSphere (transform.position, rad, lyr)) {
+				snakeSpeed = 0;
+				GameObject obj = Instantiate (projectilePrefab, transform.position, Quaternion.identity);
+				Rigidbody rg = obj.GetComponent<Rigidbody> ();
+				gameObject.transform.LookAt (plr.transform);
+				rg.AddForce (transform.forward * bulletSpeed); 
+				//poison player 
+				//span antedote
+				//once player is cured of poisn change range to false again 
+				Debug.Log ("spaning antedote");
+				isPlayerInRange = true;
+			}
+		}
+
 	}
 
+	void spawnAntedote(){
+	
+	}
+
+	//
+	void resetSnakeRange(){
+		isPlayerInRange = false;
+		//
+	}
 	//testing trigger
 	void OnTriggerEnter(Collider other) {
 		Debug.LogAssertion ("collided with snake");
