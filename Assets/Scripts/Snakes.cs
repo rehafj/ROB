@@ -73,6 +73,8 @@ public class Snakes : Traps {
 	void spawnAntedoe(){
 	}
 
-
-
+	//testing trigger
+	void OnTriggerEnter(Collider other) {
+		Debug.LogAssertion ("collided with snake");
+}
 }
